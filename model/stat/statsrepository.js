@@ -12,27 +12,27 @@ class StatsRepository
     config.hostname ? this.client = redis.createClient(config.port,config.hostname) : this.client = redis.createClient();
     config.auth && this.client.auth(config.auth);
   }
-  fetchAll (userid) {
+  fetchAll (user) {
     const self = this;
     return new Promise(function (resolve,reject) {
       let multi = self.client.multi();
       multi
-        .zscore('stat:reputation','user:' + userid)
-        .zscore('stat:impact','user:' + userid)
-        .zscore('stat:helpful','user:' + userid)
-        .zscore('stat:buggy','user:' + userid)
+        .zscore('stat:reputation','user:' + user)
+        .zscore('stat:impact','user:' + user)
+        .zscore('stat:helpful','user:' + user)
+        .zscore('stat:buggy','user:' + user)
         .exec(function (err,res) {
           if (err) {
             return reject(err);
           }
-          resolve(self.mapper.statsfromjson(userid,res));
+          resolve(self.mapper.statsfromjson(user,res));
         });
     });
   }
-  incrementStat (userid,stat,score) {
+  increment(user, stat, score) {
     const self = this;
     return new Promise(function (resolve,reject) {
-      self.client.zincrby('stat:' + stat.toLowerCase(),score,'user:' + userid,function (err,res) {
+      self.client.zincrby('stat:' + stat.toLowerCase(),score,'user:' + user,function (err,res) {
         if (err) {
           return reject(err);
         }

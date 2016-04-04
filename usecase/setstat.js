@@ -10,12 +10,12 @@ class SetStatUseCase
   }
   execute (params,res) {
     this.repo
-      .increment(params.userid,params.stat,params.score)
+      .increment(params.user, params.stat, params.points)
       .then(function (user) {
-        res.ok && res.ok(user);
+        res && res.ok(user);
       })
       .catch(function (err) {
-        res.ko && res.ko('Impossible set stats.');
+        res && res.ko('Impossible set stats.');
       });
   }
 }

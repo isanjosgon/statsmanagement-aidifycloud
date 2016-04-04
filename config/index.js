@@ -27,9 +27,9 @@ module.exports = {
     githubservice : process.env.GITSERVICE_ADDRESS
   },
   database : {
-    host : process.env.REDISTOGO_URL ? require('url').parse(process.env.REDISTOGO_URL).hostname : null,
-    port : process.env.REDISTOGO_URL ? require('url').parse(process.env.REDISTOGO_URL).port : null,
-    auth : process.env.REDISTOGO_URL ? require('url').parse(process.env.REDISTOGO_URL).auth.split(':')[1] : null
+    host : process.env.REDIS_HOST,
+    port : process.env.REDIS_PORT,
+    auth : process.env.REDIS_PASSWORD
   },
   logging : {
     appenders: [{

@@ -10,12 +10,12 @@ class GetStatsUseCase
   }
   execute (params,res) {
     this.repo
-      .fetchAll(params.userid)
+      .fetchAll(params.id)
       .then(function (user) {
-        res.ok && res.ok(user);
+        res && res.ok(user);
       })
       .catch(function (err) {
-        res.ko && res.ko('Impossible get stats.');
+        res && res.ko(err);
       });
   }
 }

@@ -5,15 +5,12 @@
 
 class Stats
 {
-  constructor (id,reputationScore,impactScore,helpfulScore,buggyScore) {
-    this.userid = id;
-    this.stats = {
-      reputation : reputationScore,
-      impact : impactScore,
-      helpful : helpfulScore,
-      buggy : buggyScore
-    };
-    this.totalPoints = reputationScore + impactScore + helpfulScore + buggyScore;
+  constructor (reputationScore,impactScore,helpfulScore,buggyScore) {
+    this.reputation = reputationScore || 0;
+    this.impact = impactScore || 0;
+    this.helpful = helpfulScore || 0;
+    this.buggy = buggyScore || 0;
+    this.total = this.reputation + this.impact + this.helpful + this.buggy;
   }
 }
 

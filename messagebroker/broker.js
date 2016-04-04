@@ -17,12 +17,11 @@ class Broker
     this.client.subscribe('SERVICE:STATSMANAGEMENT');
     this.client.on('message',function (channel,message) {
       let service = channel.split(':')[1];
-      let action = message.split(':')[0];
-      if (service == 'STATSMANAGEMENT' && action === 'SET_STAT') {
+      if (service == 'STATSMANAGEMENT') {
         if (logger) {
           logger.log('request MESSAGE : ' + message);
         }
-        setstat.execute(JSON.parse(message.split(':')[1]));
+        setstat.execute(JSON.parse(message));
       }
     });
   }

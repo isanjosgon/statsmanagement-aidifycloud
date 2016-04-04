@@ -21,10 +21,11 @@ class Server
       let response = new Response(res);
       response.pong();
     });
-    api.get('/:id/stats',function (req,res) {
+    api.get('/stats/:id',function (req,res) {
       if (logger) {
-        logger.log('request GET : /' + JSON.stringify(req.params.id) + '/stats');
+        logger.log('request GET : /stats/' + req.params.id);
       }
+			
       getstats.execute(req.params,new Response(res,logger));
     });
 
