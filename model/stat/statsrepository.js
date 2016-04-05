@@ -9,8 +9,8 @@ class StatsRepository
 {
   constructor (config,mapper) {
     this.mapper = mapper;
-    config.hostname ? this.client = redis.createClient(config.port,config.hostname) : this.client = redis.createClient();
-    config.auth && this.client.auth(config.auth);
+    this.client = redis.createClient(config.port, config.host)
+    this.client.auth(config.auth);
   }
   fetchAll (user) {
     const self = this;
